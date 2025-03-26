@@ -13,7 +13,7 @@ from selenium.webdriver import ActionChains
 class SeleniumClass(unittest.TestCase):
 
     @classmethod
-    def setUpClass(cls) -> None:
+    def setUpClass(cls):
         # Initialize the browser driver
         cls.driver = webdriver.Chrome()
         # Maximize the browser window
@@ -104,12 +104,12 @@ class SeleniumClass(unittest.TestCase):
         driver = self.driver
 
         # Open the following URL in the browser
-        driver.get("https://magento.softwaretestingboard.com/")
-        sleep(3)
+        #driver.get("https://magento.softwaretestingboard.com/")
+        #sleep(3)
 
         # [ You may have to switch to frame]
         # switch to frame 0
-        driver.switch_to.frame(0)
+        #driver.switch_to.frame(0)
 
         # Selected item (Autumn Pullie)
         #autumn_pullie = driver.find_element(By.CLASS_NAME, "product-image-photo")
@@ -117,16 +117,20 @@ class SeleniumClass(unittest.TestCase):
         autumn_pullie.click()
 
         # Pick size (M)
+        autumn_pullie_size = driver.find_element(By.XPATH, "//div[@id='option-label-size-143-item-168']")
+        autumn_pullie_size.click()
 
         # Pick color (Purple)
+        autumn_pullie_color = driver.find_element(By.XPATH, "//div[@id='option-label-color-93-item-57']")
+        autumn_pullie_color.click()
 
-        # Find add to cart button
+        # Find and click add to cart button
+        add_cart_button = driver.find_element(By.XPATH, "//span[normalize-space()='Add to Cart']")
+        add_cart_button.click()
 
-        # Click add to cart button
-
-        # Find the cart icon (Located top right of page)
-
-        # Click the cart icon
+        # Find and click the cart icon (Located top right of page)
+        cart_button = driver.find_element(By.XPATH, "//a[@class='action showcart']")
+        cart_button.click()
 
     #def test_to_checkout(self):
 
@@ -138,6 +142,7 @@ class SeleniumClass(unittest.TestCase):
 
 
     # Finally close the browser
-    def tearDown(self):
-        self.driver.quit()
+    @classmethod
+    def tearDown(cls):
+        cls.driver.quit()
 
