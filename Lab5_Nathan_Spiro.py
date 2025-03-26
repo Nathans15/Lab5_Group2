@@ -95,7 +95,7 @@ class SeleniumClass(unittest.TestCase):
         action.click(material_polyester)
         sleep(1)
 
-    #def test_to_add_item_to_cart(self):
+    def test_to_add_item_to_cart(self):
 
         # Create the object driver
         driver = self.driver
