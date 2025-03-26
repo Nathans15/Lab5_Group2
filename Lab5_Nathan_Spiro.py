@@ -54,39 +54,46 @@ class SeleniumClass(unittest.TestCase):
 
         # Select the appropriate Style, Size, Price Range, Color and Material
         # Style (Pullover)
-        style = driver.find_element(By.XPATH, '/html/body/div[2]/main/div[3]/div[2]/div/div[2]/div/div[1]/div[1]')
+        style = driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[1]/div[1]')
         style.click()
 
-        style_pullover = driver.find_element(By.XPATH, '/html/body/div[2]/main/div[3]/div[2]/div/div[2]/div/div[1]/div[2]/ol/li[3]/a')
+        style_pullover = driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[1]/div[2]/ol/li[3]/a')
         style_pullover.click()
+        sleep(1)
 
         # Size (M)
-        size = driver.find_element(By.XPATH, '')
+        size = driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[2]/div[1]')
         size.click()
+        sleep(1)
 
-        size_m = driver.find_element(By.XPATH, '')
-        size_m.click()
+        size_m = driver.find_element(By.XPATH, "//a[@aria-label='M']//div[contains(@class,'swatch-option text')][normalize-space()='M']")
+        action.click(size_m)
+        sleep(1)
 
         # Price Range (50 - 59)
-        price = driver.find_element(By.XPATH, '')
+        price = driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[11]/div[1]')
         price.click()
 
-        price_range = driver.find_element(By.XPATH, '')
-        price_range.click()
+        price_range = driver.find_element(By.XPATH, "//span[normalize-space()='$59.99']")
+        action.click(price_range)
+        sleep(1)
 
         # Color (Purple)
-        color = driver.find_element(By.XPATH, '')
+        color = driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[4]/div[1]')
         color.click()
 
-        color_purple = driver.find_element(By.XPATH, '')
-        color_purple.click()
+        color_purple = driver.find_element(By.XPATH, "//a[@aria-label='Purple']//div[contains(@class,'swatch-option color')]")
+        action.click(color_purple)
+        sleep(1)
 
         # Material (Polyester)
-        material = driver.find_element(By.XPATH, '')
+        material = driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[7]/div[1]')
         material.click()
+        sleep(1)
 
-        material_polyester = driver.find_element(By.XPATH, '')
+        material_polyester = driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[4]/div[2]/ol/li[3]/a')
         material_polyester.click()
+        sleep(1)
 
     #def test_to_add_item_to_cart(self):
 
