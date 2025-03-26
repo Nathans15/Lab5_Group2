@@ -29,6 +29,9 @@ class SeleniumClass(unittest.TestCase):
         driver.get("https://magento.softwaretestingboard.com/")
         sleep(3)
 
+        # switch to frame 0
+        driver.switch_to.frame(0)
+
         # Create an ActionChains Object
         action = ActionChains(driver)
 
@@ -67,7 +70,7 @@ class SeleniumClass(unittest.TestCase):
         sleep(1)
 
         size_m = driver.find_element(By.XPATH, "//a[@aria-label='M']//div[contains(@class,'swatch-option text')][normalize-space()='M']")
-        action.click(size_m)
+        action.click(size_m).perform()
         sleep(1)
 
         # Price Range (50 - 59)
@@ -75,7 +78,7 @@ class SeleniumClass(unittest.TestCase):
         price.click()
 
         price_range = driver.find_element(By.XPATH, "//span[normalize-space()='$59.99']")
-        action.click(price_range)
+        action.click(price_range).perform()
         sleep(1)
 
         # Color (Purple)
@@ -83,7 +86,7 @@ class SeleniumClass(unittest.TestCase):
         color.click()
 
         color_purple = driver.find_element(By.XPATH, "//a[@aria-label='Purple']//div[contains(@class,'swatch-option color')]")
-        action.click(color_purple)
+        action.click(color_purple).perform()
         sleep(1)
 
         # Material (Polyester)
@@ -92,7 +95,7 @@ class SeleniumClass(unittest.TestCase):
         sleep(1)
 
         material_polyester = driver.find_element(By.XPATH, "//a[contains(text(),'Polyester')]")
-        action.click(material_polyester)
+        action.click(material_polyester).perform()
         sleep(1)
 
     def test_to_add_item_to_cart(self):
@@ -100,16 +103,41 @@ class SeleniumClass(unittest.TestCase):
         # Create the object driver
         driver = self.driver
 
-        # Select any single dress (if there are multiple depending upon your selection) and click on Add to cart
-        # [ You may have to switch to frame]
-        # Selected item (Autumn Pullie)
+        # Open the following URL in the browser
+        driver.get("https://magento.softwaretestingboard.com/")
+        sleep(3)
 
-        # Click the “cart icon”
+        # [ You may have to switch to frame]
+        # switch to frame 0
+        driver.switch_to.frame(0)
+
+        # Selected item (Autumn Pullie)
+        #autumn_pullie = driver.find_element(By.CLASS_NAME, "product-image-photo")
+        autumn_pullie = driver.find_element(By.XPATH, "//img[@alt='Autumn Pullie-M-Purple']")
+        autumn_pullie.click()
+
+        # Pick size (M)
+
+        # Pick color (Purple)
+
+        # Find add to cart button
+
+        # Click add to cart button
+
+        # Find the cart icon (Located top right of page)
+
+        # Click the cart icon
 
     #def test_to_checkout(self):
 
+        # Find the “Proceed to Checkout” Button
+
         # Click on the “Proceed to Checkout” Button
 
-        # Assert the “Order summary”. Your shopping cart should show the dress selected by you
+        # Assert the “Order summary” with assertEqual, Your shopping cart should show the dress selected by you
 
-        # Finally close the browser
+
+    # Finally close the browser
+    def tearDown(self):
+        self.driver.quit()
+
