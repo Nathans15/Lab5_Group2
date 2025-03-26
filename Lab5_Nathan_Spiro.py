@@ -100,6 +100,8 @@ class SeleniumClass(unittest.TestCase):
 
     def test_to_add_item_to_cart(self):
 
+        # ---------------THIS PART NEEDS TO BE FIXED
+
         # Create the object driver
         driver = self.driver
 
@@ -110,6 +112,8 @@ class SeleniumClass(unittest.TestCase):
         # [ You may have to switch to frame]
         # switch to frame 0
         #driver.switch_to.frame(0)
+
+        # ------------------
 
         # Selected item (Autumn Pullie)
         #autumn_pullie = driver.find_element(By.CLASS_NAME, "product-image-photo")
