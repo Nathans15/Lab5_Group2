@@ -91,14 +91,18 @@ class SeleniumClass(unittest.TestCase):
         material.click()
         sleep(1)
 
-        material_polyester = driver.find_element(By.XPATH, '/html/body/div[2]/main/div[3]/div[2]/div/div[2]/div[3]/div[4]/div[2]/ol/li[3]/a')
-        material_polyester.click()
+        material_polyester = driver.find_element(By.XPATH, "//a[contains(text(),'Polyester')]")
+        action.click(material_polyester)
         sleep(1)
 
     #def test_to_add_item_to_cart(self):
 
+        # Create the object driver
+        driver = self.driver
+
         # Select any single dress (if there are multiple depending upon your selection) and click on Add to cart
         # [ You may have to switch to frame]
+        # Selected item (Autumn Pullie)
 
         # Click the “cart icon”
 
