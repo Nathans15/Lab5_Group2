@@ -91,7 +91,7 @@ class SeleniumClass(unittest.TestCase):
         material.click()
         sleep(1)
 
-        material_polyester = driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[4]/div[2]/ol/li[3]/a')
+        material_polyester = driver.find_element(By.XPATH, '/html/body/div[2]/main/div[3]/div[2]/div/div[2]/div[3]/div[4]/div[2]/ol/li[3]/a')
         material_polyester.click()
         sleep(1)
 
