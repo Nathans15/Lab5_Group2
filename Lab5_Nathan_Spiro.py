@@ -11,7 +11,6 @@ from time import sleep
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
 from selenium.webdriver import ActionChains
 
 
