@@ -18,7 +18,7 @@ class SeleniumClass(unittest.TestCase):
         cls.driver.maximize_window()
         sleep(3)
 
-    def test_to_find_item(self):
+    def test_A_to_find_item(self):
         # Create the object driver
         driver = self.driver
 
@@ -100,7 +100,7 @@ class SeleniumClass(unittest.TestCase):
         autumn_pullie.click()
         sleep(1)
 
-    def test_add_to_cart_and_checkout(self):
+    def test_B_add_to_cart_and_checkout(self):
         # Create the object driver
         driver = self.driver
 
