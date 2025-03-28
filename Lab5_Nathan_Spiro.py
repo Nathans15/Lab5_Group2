@@ -26,9 +26,6 @@ class SeleniumClass(unittest.TestCase):
         driver.get("https://magento.softwaretestingboard.com/")
         sleep(3)
 
-        # switch to frame 0
-        #driver.switch_to.frame(0)
-
         # Create an ActionChains Object
         action = ActionChains(driver)
 
@@ -103,35 +100,56 @@ class SeleniumClass(unittest.TestCase):
         autumn_pullie.click()
         sleep(1)
 
-        # Pick size (M)
-        autumn_pullie_size = driver.find_element(By.XPATH, "//div[@id='option-label-size-143-item-168']")
-        autumn_pullie_size.click()
-        sleep(1)
-
-        # Pick color (Purple)
-        autumn_pullie_color = driver.find_element(By.XPATH, "//div[@id='option-label-color-93-item-57']")
-        autumn_pullie_color.click()
-        sleep(1)
-
     def test_add_to_cart_and_checkout(self):
         # Create the object driver
         driver = self.driver
 
+        driver.get("https://magento.softwaretestingboard.com/autumn-pullie.html")
+        sleep(3)
+
         # Might need to switch the frame (Maybe not)
 
+        # Pick size (M)
+        autumn_pullie_size = driver.find_element(By.XPATH, "//div[@id='option-label-size-143-item-168']")
+        autumn_pullie_size.click()
+        sleep(3)
+
+        # Pick color (Purple)
+        autumn_pullie_color = driver.find_element(By.XPATH, "//div[@id='option-label-color-93-item-57']")
+        autumn_pullie_color.click()
+        sleep(5)
+
         # Find and click add to cart button
-        add_cart_button = driver.find_element(By.XPATH, "")
+        add_cart_button = driver.find_element(By.ID, "product-addtocart-button")
         add_cart_button.click()
-        sleep(2)
+        sleep(3)
 
         # Find and click the cart icon (Located top right of page)
         cart_button = driver.find_element(By.XPATH, "//a[@class='action showcart']")
         cart_button.click()
-        sleep(2)
+        sleep(3)
 
         # Find and click the “Proceed to Checkout” Button
+        checkout_button = driver.find_element(By.XPATH, '//*[@id="top-cart-btn-checkout"]')
+        checkout_button.click()
+        sleep(3)
 
         # Assert the “Order summary” with assertEqual, Your shopping cart should show the item selected by you
+        order_summary = driver.find_element(By.XPATH, '/html/body/div[2]/main/div[2]/div/div[2]/aside/div[2]/div/div/div[1]/div/div[1]')
+        order_summary.click()
+        sleep(3)
+
+        view_details = driver.find_element(By.XPATH, '/html/body/div[2]/main/div[2]/div/div[2]/aside/div[2]/div/div/div[1]/div/div[2]/div/ol/li/div/div/div[2]/span')
+        view_details.click()
+        sleep(3)
+
+        product_item_name = driver.find_element(By.CSS_SELECTOR, ".product-item-name")
+        product_details_colour = driver.find_element(By.CSS_SELECTOR, "dd.values:nth-child(4)")
+        product_details_size = driver.find_element(By.CSS_SELECTOR, "dd.values:nth-child(2)")
+
+        self.assertEqual(product_item_name.text, "Autumn Pullie")
+        self.assertEqual(product_details_size.text, "M")
+        self.assertEqual(product_details_colour.text, "Purple")
 
 
     # Finally close the browser
