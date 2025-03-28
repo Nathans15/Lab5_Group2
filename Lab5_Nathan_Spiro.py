@@ -8,8 +8,6 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver import ActionChains
 
 
-
-
 class SeleniumClass(unittest.TestCase):
 
     @classmethod
@@ -21,7 +19,6 @@ class SeleniumClass(unittest.TestCase):
         sleep(3)
 
     def test_to_find_item(self):
-
         # Create the object driver
         driver = self.driver
 
@@ -65,91 +62,76 @@ class SeleniumClass(unittest.TestCase):
         sleep(2)
 
         # Size (M)
-        size = driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[2]/div[1]')
+        #size = driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[2]/div[1]')
+        size = driver.find_element(By.XPATH, "//div[normalize-space()='Size']")
         size.click()
         sleep(2)
 
-        size_m = driver.find_element(By.XPATH, "//a[@aria-label='M']//div[contains(@class,'swatch-option text')][normalize-space()='M']")
-        #action.click(size_m).perform()
+        #size_m = driver.find_element(By.XPATH, "//a[@aria-label='M']//div[contains(@class,'swatch-option text')][normalize-space()='M']").click()
+        size_m = driver.find_element(By.XPATH,"//a[@aria-label='M']//div[contains(@class,'swatch-option text')][normalize-space()='M']")
         size_m.click()
         sleep(2)
 
         # Price Range (50 - 59)
-        price = driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[11]/div[1]')
+        price = driver.find_element(By.XPATH, "//div[normalize-space()='Price']")
         price.click()
 
         price_range = driver.find_element(By.XPATH, "//span[normalize-space()='$59.99']")
-        #action.click(price_range).perform()
         price_range.click()
         sleep(2)
 
         # Color (Purple)
-        color = driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[4]/div[1]')
+        color = driver.find_element(By.XPATH, "//div[normalize-space()='Color']")
         color.click()
 
         color_purple = driver.find_element(By.XPATH, "//a[@aria-label='Purple']//div[contains(@class,'swatch-option color')]")
-        #action.click(color_purple).perform()
         color_purple.click()
         sleep(2)
 
         # Material (Polyester)
-        material = driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[7]/div[1]')
+        material = driver.find_element(By.XPATH, "//div[normalize-space()='Material']")
         material.click()
         sleep(2)
 
         material_polyester = driver.find_element(By.XPATH, "//a[contains(text(),'Polyester')]")
-        #action.click(material_polyester).perform()
         material_polyester.click()
         sleep(2)
 
-    def test_to_add_item_to_cart(self):
-
-        # ---------------THIS PART NEEDS TO BE FIXED
-
-        # Create the object driver
-        driver = self.driver
-
-        # Open the following URL in the browser
-        driver.get("https://magento.softwaretestingboard.com/")
-        sleep(3)
-
-        # [ You may have to switch to frame]
-        # switch to frame 0
-        #iframe = driver.find_element(By.XPATH, "/html/body/iframe")
-        #iframe = driver.find_element(By.TAG_NAME, "iframe")
-        driver.switch_to.frame(1)
-        sleep(2)
-
-        # ------------------
-
         # Selected item (Autumn Pullie)
         #autumn_pullie = driver.find_element(By.XPATH, '//*[@id="maincontent"]/div[3]/div[1]/div[3]/ol/li[10]/div/a')
-        autumn_pullie = driver.find_element(By.XPATH, "//img[@alt='Autumn Pullie-M-Purple']")
+        autumn_pullie = driver.find_element(By.XPATH, "//a[@class='product-item-link']")
         autumn_pullie.click()
+        sleep(1)
 
         # Pick size (M)
         autumn_pullie_size = driver.find_element(By.XPATH, "//div[@id='option-label-size-143-item-168']")
         autumn_pullie_size.click()
+        sleep(1)
 
         # Pick color (Purple)
         autumn_pullie_color = driver.find_element(By.XPATH, "//div[@id='option-label-color-93-item-57']")
         autumn_pullie_color.click()
+        sleep(1)
+
+    def test_add_to_cart_and_checkout(self):
+        # Create the object driver
+        driver = self.driver
+
+        # Might need to switch the frame (Maybe not)
 
         # Find and click add to cart button
-        add_cart_button = driver.find_element(By.XPATH, "//span[normalize-space()='Add to Cart']")
+        add_cart_button = driver.find_element(By.XPATH, "")
         add_cart_button.click()
+        sleep(2)
 
         # Find and click the cart icon (Located top right of page)
         cart_button = driver.find_element(By.XPATH, "//a[@class='action showcart']")
         cart_button.click()
+        sleep(2)
 
-    #def test_to_checkout(self):
+        # Find and click the “Proceed to Checkout” Button
 
-        # Find the “Proceed to Checkout” Button
-
-        # Click on the “Proceed to Checkout” Button
-
-        # Assert the “Order summary” with assertEqual, Your shopping cart should show the dress selected by you
+        # Assert the “Order summary” with assertEqual, Your shopping cart should show the item selected by you
 
 
     # Finally close the browser
